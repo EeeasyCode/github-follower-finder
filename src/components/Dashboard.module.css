@@ -4,13 +4,13 @@
   align-items: center;
   justify-content: center;
   min-height: 50vh;
-  gap: 1rem;
+  gap: 1.5rem;
   color: var(--text-secondary);
 }
 
 .spinner {
   animation: spin 1s linear infinite;
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 @keyframes spin {
@@ -25,27 +25,31 @@
 }
 
 .errorCard {
-  background-color: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background-color: rgba(255, 69, 58, 0.05);
+  border: 1px solid rgba(255, 69, 58, 0.1);
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: 16px;
   text-align: center;
-  color: #fca5a5;
+  color: var(--danger);
+  max-width: 400px;
 }
 
 .errorCard h3 {
   margin-bottom: 0.5rem;
-  color: #ef4444;
+  color: var(--danger);
 }
 
 .errorCard button {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .dashboard {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .header {
@@ -53,44 +57,59 @@
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .welcome {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(to bottom right, #fff, #888);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .lastCheck {
   color: var(--text-secondary);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 
 .actions {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
 }
 
 .statCard {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 1.5rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 1rem;
+  transition: all 0.2s;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  border-color: #333;
 }
 
 .statIcon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,64 +117,72 @@
 
 .statLabel {
   color: var(--text-secondary);
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 500;
 }
 
 .statValue {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 .listsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 3rem;
 }
 
 .listTitle {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin-bottom: 1.5rem;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .emptyState {
   color: var(--text-secondary);
   text-align: center;
-  padding: 2rem 0;
+  padding: 4rem 0;
   background-color: var(--bg-secondary);
-  border-radius: 8px;
+  border-radius: 16px;
+  border: 1px dashed var(--border);
+  opacity: 0.7;
 }
 
 .userList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .userItem {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.75rem;
-  background-color: var(--bg-secondary);
-  border-radius: 8px;
-  transition: background-color 0.2s;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
 }
 
 .userItem:hover {
-  background-color: var(--border);
+  background-color: var(--bg-secondary);
+  border-color: var(--border);
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   object-fit: cover;
+  background-color: var(--bg-card);
 }
 
 .userInfo {
@@ -167,13 +194,39 @@
 
 .username {
   font-weight: 500;
+  font-size: 1rem;
+  color: var(--text-primary);
 }
 
 .profileLink {
   color: var(--text-secondary);
-  transition: color 0.2s;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+  opacity: 0.5;
 }
 
 .profileLink:hover {
-  color: var(--accent-primary);
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .actions {
+    width: 100%;
+  }
+  
+  .actions button {
+    flex: 1;
+  }
+  
+  .welcome {
+    font-size: 2rem;
+  }
 }

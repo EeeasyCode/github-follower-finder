@@ -1,4 +1,4 @@
-import { Key, Search, ShieldAlert } from 'lucide-react';
+import { ArrowRight, Key, Search, ShieldAlert } from 'lucide-react';
 import React, { useState } from 'react';
 import styles from './SetupForm.module.css';
 
@@ -21,21 +21,26 @@ export const SetupForm: React.FC<SetupFormProps> = ({ onSubmit, isLoading }) => 
   return (
     <div className={styles.container}>
       <div className={`card ${styles.formCard}`}>
-        <h2 className={styles.title}>Get Started</h2>
-        <p className={styles.subtitle}>Enter your GitHub username to track your followers.</p>
+        <div className={styles.header}>
+          <h2 className={styles.title}>GitHub Tracker</h2>
+          <p className={styles.subtitle}>Track your followers and unfollowers</p>
+        </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
-            <label className={styles.label}>GitHub Username</label>
+            <label className={styles.label}>Username</label>
             <div className={styles.inputWrapper}>
               <Search className={styles.icon} size={20} />
               <input
                 type="text"
                 className="input"
-                placeholder="e.g. octocat"
+                placeholder="github_username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
+                autoComplete="off"
+                autoCapitalize="off"
+                autoCorrect="off"
               />
             </div>
           </div>
@@ -46,28 +51,28 @@ export const SetupForm: React.FC<SetupFormProps> = ({ onSubmit, isLoading }) => 
               className={`${styles.toggleBtn} ${useToken ? styles.active : ''}`}
               onClick={() => setUseToken(true)}
             >
-              Use Token (Recommended)
+              Use Token
             </button>
             <button
               type="button"
               className={`${styles.toggleBtn} ${!useToken ? styles.active : ''}`}
               onClick={() => setUseToken(false)}
             >
-              No Token (Limited)
+              No Token
             </button>
           </div>
 
           {useToken ? (
             <div className={`${styles.field} animate-fade-in`}>
               <label className={styles.label}>
-                Personal Access Token
+                Access Token
                 <a 
                   href="https://github.com/settings/tokens/new?scopes=read:user" 
                   target="_blank" 
                   rel="noreferrer"
                   className={styles.link}
                 >
-                  (Get one here)
+                  Create Token →
                 </a>
               </label>
               <div className={styles.inputWrapper}>
@@ -75,22 +80,21 @@ export const SetupForm: React.FC<SetupFormProps> = ({ onSubmit, isLoading }) => 
                 <input
                   type="password"
                   className="input"
-                  placeholder="ghp_..."
+                  placeholder="ghp_xxxxxxxxxxxx"
                   value={token}
                   onChange={(e) => setToken(e.target.value)}
                   required={useToken}
                 />
               </div>
               <p className={styles.hint}>
-                Token is only stored in your browser's memory and used to communicate directly with GitHub.
+                Token is stored locally and used only for GitHub API requests.
               </p>
             </div>
           ) : (
             <div className={`${styles.warning} animate-fade-in`}>
-              <ShieldAlert size={20} />
+              <ShieldAlert size={20} className="flex-shrink-0" />
               <p>
-                Without a token, you are limited to 60 requests per hour. 
-                Large accounts (1000+ followers) may hit limits immediately.
+                Limited to 60 requests/hour. Recommended only for small accounts.
               </p>
             </div>
           )}
@@ -100,7 +104,8 @@ export const SetupForm: React.FC<SetupFormProps> = ({ onSubmit, isLoading }) => 
             className={`btn btn-primary ${styles.submitBtn}`}
             disabled={isLoading}
           >
-            {isLoading ? 'Checking...' : 'Check Followers'}
+            {isLoading ? 'Connecting...' : 'Start Tracking'}
+            {!isLoading && <ArrowRight size={20} />}
           </button>
         </form>
       </div>

@@ -1,32 +1,42 @@
 :root {
-  /* Premium Dark Mode Palette */
-  --bg-primary: #0f1117;
-  --bg-secondary: #1a1d26;
-  --bg-card: #222632;
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --accent-primary: #6366f1; /* Indigo 500 */
-  --accent-hover: #4f46e5;
-  --accent-glow: rgba(99, 102, 241, 0.3);
-  --danger: #ef4444;
-  --success: #22c55e;
-  --border: #334155;
+  /* Midnight Minimalist Palette (Premium Modern) */
+  --bg-primary: #050505; /* Deepest Black */
+  --bg-secondary: #0A0A0A; /* Subtle lift */
+  --bg-card: #0A0A0A;
+  --text-primary: #EDEDED; /* Soft White */
+  --text-secondary: #888888; /* Neutral Gray */
   
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Accents */
+  --accent-primary: #FFFFFF; /* Stark White for primary actions */
+  --accent-hover: #E0E0E0;
+  --accent-glow: rgba(255, 255, 255, 0.15);
+  
+  /* Status */
+  --danger: #FF453A;
+  --success: #32D74B;
+  
+  /* UI Elements */
+  --border: #222222;
+  --input-bg: #111111;
+  --ring: rgba(255, 255, 255, 0.2);
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 button {
@@ -42,68 +52,89 @@ input {
 
 /* Utilities */
 .container {
-  max-width: 1200px;
+  max-width: 600px; /* Narrower container for mobile-first feel */
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
+  width: 100%;
 }
 
 .card {
   background-color: var(--bg-card);
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: 20px; /* More rounded corners */
+  padding: 2rem;
   border: 1px solid var(--border);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
 .btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
   font-weight: 600;
-  transition: all 0.2s;
+  font-size: 1rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .btn-primary {
   background-color: var(--accent-primary);
-  color: white;
-  box-shadow: 0 0 15px var(--accent-glow);
+  color: #000000;
+  border: 1px solid transparent;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 .btn-primary:hover {
   background-color: var(--accent-hover);
-  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  background-color: #CCCCCC;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-secondary {
-  background-color: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-  background-color: var(--border);
-  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .input {
   width: 100%;
-  padding: 0.75rem;
-  background-color: var(--bg-secondary);
+  padding: 0.875rem 1rem;
+  background-color: var(--input-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text-primary);
-  transition: border-color 0.2s;
+  font-size: 0.95rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 2px var(--accent-glow);
+  background-color: #161616;
+  border-color: var(--text-secondary);
+  box-shadow: 0 0 0 2px var(--ring);
 }
 
 /* Animations */
@@ -113,5 +144,21 @@ input {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
 }
