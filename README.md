@@ -12,5 +12,3 @@ A simple web app to find unfollowers on GitHub.
 
 - No data is stored on the server
 - All data is stored locally in the browser (use indexed DB)
-- No tracking or analytics
-
