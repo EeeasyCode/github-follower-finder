@@ -2,6 +2,11 @@
 
 A simple web app to find unfollowers on GitHub.
 
+<p align="center">
+  <img src="images/image.png" width="250" />
+  <img src="images/image-1.png" width="250" />
+</p>
+
 ## Features
 
 - Find unfollowers on GitHub
